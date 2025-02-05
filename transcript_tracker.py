@@ -75,6 +75,7 @@ def extract_json_from_text(text):
             return None  # Return None if parsing fails
     return None  # Return None if no valid JSON found
 
+
 #Summarises each quarter's transcript using AI.
 def summarise(quarterly_data):
     results = {}
@@ -155,7 +156,7 @@ def format_as_dataframe(summary_data):
 
 # Main function to run 
 def main():
-    folder = "dassault"
+    folder = "grifols"
     quarterly_transcripts = extract_text_from_folder(folder)
 
     if not quarterly_transcripts:
@@ -163,10 +164,9 @@ def main():
         return
 
     summary = summarise(quarterly_transcripts)
-
     summary_df = format_as_dataframe(summary)
     tools.display_dataframe_to_user(name="Quarterly Summary", dataframe=summary_df)
-    summary_df.to_csv("transcript_sentiment_table_{folder}.csv")
+    summary_df.to_csv("transcript_sentiment_table_"+folder+".csv")
 
 # Run the main function
 if __name__ == "__main__":
